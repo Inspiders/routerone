@@ -1,0 +1,22 @@
+{
+  "name": "routerone",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "docker compose up --build",
+    "dev:proxy": "cd apps/proxy && bun dev",
+    "dev:dashboard": "cd apps/dashboard && npm run dev",
+    "db:generate": "cd packages/shared && drizzle-kit generate",
+    "db:migrate": "cd packages/shared && drizzle-kit migrate",
+    "db:seed": "cd packages/shared && bun seed.ts",
+    "test": "bun test apps/proxy/tests",
+    "test:watch": "bun test --watch apps/proxy/tests"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.4.0"
+  }
+}
