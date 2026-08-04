@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.next/
+.env
+*.local
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+migrations/
+*.db
+.turbo/
