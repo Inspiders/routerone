@@ -1,0 +1,25 @@
+{
+  "name": "@routerone/proxy",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "test": "bun test",
+    "build": "bun build src/index.ts --outdir dist --target bun"
+  },
+  "dependencies": {
+    "@routerone/shared": "workspace:*",
+    "hono": "^4.4.0",
+    "bcryptjs": "^2.4.3",
+    "jose": "^5.4.0",
+    "ioredis": "^5.4.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/sdk-node": "^0.52.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.47.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/bcryptjs": "^2.4.6",
+    "typescript": "^5.4.0"
+  }
+}
