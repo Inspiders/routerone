@@ -1,0 +1,10 @@
+FROM ghcr.io/berriai/litellm:main-latest
+
+# LiteLLM is the multi-provider LLM proxy (Python).
+# It accepts requests in OpenAI format and forwards them to
+# OpenAI, Anthropic, Groq, DeepSeek, Mistral, and others.
+# RouterOne's proxy talks to LiteLLM instead of calling provider APIs directly.
+
+EXPOSE 4000
+
+CMD ["litellm", "--host", "0.0.0.0", "--port", "4000", "--telemetry", "False"]
