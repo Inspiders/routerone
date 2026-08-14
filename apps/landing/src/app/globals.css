@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #ffffff;
+    color: #000000;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Brutalist scrollbar — page level ──────────────────────────────────── */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-left: 2px solid #000000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #000000;
+    border: none;
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+  }
+  ::-webkit-scrollbar-corner {
+    background: #000000;
+  }
+
+  /* ── Brutalist scrollbar — code blocks (pre/code inside dark panels) ───── */
+  pre::-webkit-scrollbar {
+    height: 8px;
+  }
+  pre::-webkit-scrollbar-track {
+    background: #000000;
+    border-top: 2px solid #ffffff;
+  }
+  pre::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 0;
+    border: none;
+  }
+  pre::-webkit-scrollbar-thumb:hover {
+    background: #cccccc;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #ffffff;
+  }
+  pre {
+    scrollbar-color: #ffffff #000000;
+  }
+}
