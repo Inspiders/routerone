@@ -1,0 +1,170 @@
+version: "3.9"
+
+services:
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # INFRASTRUCTURE
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: routerone
+      POSTGRES_PASSWORD: routerone
+      POSTGRES_DB: routerone
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U routerone -d routerone"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # LITELLM — multi-provider LLM gateway (Python)
+  # Handles actual calls to OpenAI / Anthropic / Groq / DeepSeek etc.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  litellm:
+    build:
+      context: ./apps/evaluation
+      dockerfile: Dockerfile.litellm
+    ports:
+      - "4000:4000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PROXY — Hono + Bun (TypeScript)
+  # The main gateway that clients talk to instead of OpenAI/Anthropic directly.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  proxy:
+    build:
+      context: .
+      dockerfile: apps/proxy/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIS_URL=${REDIS_URL}
+      - LITELLM_URL=${LITELLM_URL}
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - OTEL_SERVICE_NAME=routerone-proxy
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      litellm:
+        condition: service_healthy
+    volumes:
+      - ./apps/proxy:/app/apps/proxy
+      - ./packages:/app/packages
+      - /app/apps/proxy/node_modules
+      - /app/packages/shared/node_modules
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # DASHBOARD — Next.js 14 with Recharts
+  # Shows cost, savings, cache hit rate, and latency metrics.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: apps/dashboard/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIS_URL=${REDIS_URL}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./apps/dashboard:/app/apps/dashboard
+      - ./packages:/app/packages
+      - /app/apps/dashboard/node_modules
+      - /app/packages/shared/node_modules
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # EVALUATION ENGINE — Python + FastAPI
+  # Runs LLM-as-judge evaluations against golden datasets.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  evaluation:
+    build:
+      context: ./apps/evaluation
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIS_URL=${REDIS_URL}
+      - LITELLM_URL=${LITELLM_URL}
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # LANDING PAGE — Next.js 14 brutalist design
+  # Static marketing page. No backend dependencies needed at runtime.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  landing:
+    build:
+      context: ./apps/landing
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - proxy
+      - dashboard
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VOLUMES
+# ─────────────────────────────────────────────────────────────────────────────
+
+volumes:
+  postgres_data:
+  redis_data:
