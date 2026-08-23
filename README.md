@@ -1,6 +1,8 @@
 # Routerone
 
-![Routerone Banner](https://i.ibb.co/5X8bbQPN/Gemini-Generated-Image-3ko1vx3ko1vx3ko1.jpg)
+<p align="center">
+  <img src="https://i.ibb.co/5X8bbQPN/Gemini-Generated-Image-3ko1vx3ko1vx3ko1.jpg" alt="Routerone Banner" width="100%" />
+</p>
 
 > Open-source, self-hosted LLM proxy that automatically routes each request
 > to the cheapest model capable of answering with sufficient quality.
