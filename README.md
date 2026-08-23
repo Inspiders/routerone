@@ -1,66 +1,106 @@
-# Routerone
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=220&section=header&text=ROUTERONE&fontSize=65&fontColor=FFFFFF&fontAlignY=45&desc=CUT%20YOUR%20LLM%20API%20COSTS%20IN%20SECONDS%20%7C%20OPEN%20SOURCE%20%26%20SELF-HOSTED&descAlignY=68&descAlign=50&descSize=15" width="100%"/>
+
+<br/>
 
 <p align="center">
   <img src="https://i.ibb.co/5X8bbQPN/Gemini-Generated-Image-3ko1vx3ko1vx3ko1.jpg" alt="Routerone Banner" width="100%" />
 </p>
 
-> Open-source, self-hosted LLM proxy that automatically routes each request
-> to the cheapest model capable of answering with sufficient quality.
-> Change only the `base_url`. Zero code changes in your app.
+<br/>
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=16&duration=2800&pause=900&color=000000&background=FFFFFF00&center=true&vCenter=true&width=750&lines=OPEN-SOURCE+LLM+PROXY+%7C+SAVE+60%E2%80%9385%25+ON+API+COSTS;ZERO+CODE+CHANGES+%C2%B7+JUST+SWAP+YOUR+BASE_URL;SELF-HOSTED+%C2%B7+HONO+%C2%B7+BUN+%C2%B7+NEXT.JS+14+%C2%B7+REDIS;INTELLIGENT+DIFFICULTY+ROUTING+%26+SEMANTIC+CACHE)](https://github.com/Inspiders/routerone)
+
+<br/>
+
+![License](https://img.shields.io/badge/LICENSE-MIT-000000?style=flat-square&logo=opensourceinitiative&logoColor=white)
+![Bun](https://img.shields.io/badge/RUNTIME-BUN-000000?style=flat-square&logo=bun&logoColor=white)
+![Hono](https://img.shields.io/badge/FRAMEWORK-HONO-000000?style=flat-square&logo=hono&logoColor=white)
+![Next.js](https://img.shields.io/badge/FRONTEND-NEXT.JS_14-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Docker](https://img.shields.io/badge/DEPLOY-DOCKER_COMPOSE-000000?style=flat-square&logo=docker&logoColor=white)
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+
+<br/>
+
+## 🚀 OVERVIEW
+
+**Routerone** is an open-source, self-hosted LLM gateway that automatically routes each incoming request to the cheapest model capable of answering with optimal quality. 
+
+Drop it into your application by simply changing the `base_url` — **zero code changes required**.
 
 ```diff
  const client = new OpenAI({
 -  apiKey: process.env.OPENAI_API_KEY,
 +  apiKey: "sk-r1-<your-key>",
-+  baseURL: "http://localhost:3000/v1",  // ← just this
++  baseURL: "http://localhost:3000/v1",  // ← just this line
  });
 ```
 
----
-
-## What it does
-
-Routerone sits between your app and the LLM providers:
-
 ```
-Your App  →  Routerone Proxy  →  LiteLLM  →  OpenAI / Anthropic / Groq / DeepSeek
+[ Your Application ]  →  [ Routerone Proxy ]  →  [ LiteLLM Gateway ]  →  [ OpenAI / Anthropic / Groq / DeepSeek ]
 ```
 
-For every request it:
-1. **Classifies difficulty** (easy / medium / hard) using heuristics
-2. **Checks the semantic cache** — similar past questions return instantly at zero cost
-3. **Picks the cheapest model** capable of handling the difficulty level
-4. **Validates the response** quality — if it fails, retries with the next model and logs the chargeback
-5. **Logs everything** to PostgreSQL for the dashboard
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
 
----
+## 💡 KEY FEATURES
 
-## Stack
+```
+> ⚡ Difficulty Classifier   : Analyzes prompt complexity (length, code, reasoning, math) to pick the right tier
+> 🧠 Semantic Cache         : Redis + cosine similarity embeddings — repeat questions hit 0ms cost
+> 🔄 Smart Quality Fallback : Validates responses automatically; falls back to higher model if quality fails
+> 📊 Real-time Dashboard     : Track daily spend, cost by route, cost by model, and cumulative savings
+> 🎯 Evaluation Engine     : Built-in Python/FastAPI LLM-as-judge benchmark against golden datasets
+> 🔐 Multi-tenant Isolation  : Isolated semantic cache keys per account/API key namespace
+```
 
-| Layer | Tech |
-|-------|------|
-| Proxy | Hono + Bun (TypeScript) |
-| Dashboard | Next.js 14 + Recharts |
-| Landing | Next.js 14 + Tailwind (brutalist) |
-| Evaluation | Python + FastAPI |
-| Multi-provider | LiteLLM |
-| Database | PostgreSQL + Drizzle ORM |
-| Cache | Redis (semantic similarity) |
-| Deploy | Docker Compose / Vercel (Landing) |
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
 
----
+## 🛠️ TECH STACK
 
-## Quick start
+<table width="100%">
+<tr><td valign="top" width="22%"><b>PROXY & CORE</b></td><td valign="top">
+<img src="https://img.shields.io/badge/HONO-000000?style=flat-square&logo=hono&logoColor=white"/>
+<img src="https://img.shields.io/badge/BUN-000000?style=flat-square&logo=bun&logoColor=white"/>
+<img src="https://img.shields.io/badge/TYPESCRIPT-000000?style=flat-square&logo=typescript&logoColor=white"/>
+</td></tr>
+<tr><td valign="top"><b>DASHBOARD & LANDING</b></td><td valign="top">
+<img src="https://img.shields.io/badge/NEXT.JS_14-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
+<img src="https://img.shields.io/badge/TAILWIND_CSS-000000?style=flat-square&logo=tailwindcss&logoColor=white"/>
+<img src="https://img.shields.io/badge/RECHARTS-000000?style=flat-square&logo=react&logoColor=white"/>
+</td></tr>
+<tr><td valign="top"><b>EVALUATION ENGINE</b></td><td valign="top">
+<img src="https://img.shields.io/badge/PYTHON_3.11-000000?style=flat-square&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/FASTAPI-000000?style=flat-square&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/LITELLM-000000?style=flat-square&logo=pypi&logoColor=white"/>
+</td></tr>
+<tr><td valign="top"><b>DATABASE & CACHE</b></td><td valign="top">
+<img src="https://img.shields.io/badge/POSTGRESQL_16-000000?style=flat-square&logo=postgresql&logoColor=white"/>
+<img src="https://img.shields.io/badge/DRIZZLE_ORM-000000?style=flat-square&logo=drizzle&logoColor=white"/>
+<img src="https://img.shields.io/badge/REDIS_7-000000?style=flat-square&logo=redis&logoColor=white"/>
+</td></tr>
+<tr><td valign="top"><b>DEVOPS & DEPLOY</b></td><td valign="top">
+<img src="https://img.shields.io/badge/DOCKER-000000?style=flat-square&logo=docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/VERCEL-000000?style=flat-square&logo=vercel&logoColor=white"/>
+</td></tr>
+</table>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+
+## 🏁 QUICK START
 
 ### Prerequisites
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) — for PostgreSQL and Redis
-- [Bun](https://bun.sh) — for the proxy
-- [Node.js 20+](https://nodejs.org) — for the Next.js apps
+- **[Docker Desktop](https://www.docker.com/products/docker-desktop)** — for PostgreSQL and Redis
+- **[Bun](https://bun.sh)** — for running the proxy and workspace scripts
+- **[Node.js 20+](https://nodejs.org)** — for Next.js applications
 
-### 1. Clone and run setup
+### 1. Clone & Run Automated Setup
 
-**Windows:**
+**Windows (PowerShell):**
 ```powershell
 git clone https://github.com/Inspiders/routerone.git
 cd routerone
@@ -75,24 +115,16 @@ chmod +x scripts/setup.sh scripts/dev.sh
 ./scripts/setup.sh
 ```
 
-The setup script will:
-- Check all tools are installed
-- Create `.env` from `.env.example`
-- Install all dependencies
-- Start PostgreSQL and Redis via Docker
-- Run database migrations
-- Seed 3 sample routes + a 20-case golden dataset
+### 2. Configure Environment Keys
 
-### 2. Add your API keys
-
-Open `.env` and fill in at least one provider key:
-```
-OPENAI_API_KEY=sk-...        # or
-GROQ_API_KEY=gsk-...         # free tier available at groq.com
-ANTHROPIC_API_KEY=sk-ant-... # or
+Open `.env` and add your LLM provider API keys:
+```env
+OPENAI_API_KEY=sk-...
+GROQ_API_KEY=gsk-...        # Free tier available at groq.com
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-### 3. Start the dev servers
+### 3. Launch Dev Servers
 
 **Windows:**
 ```powershell
@@ -104,86 +136,68 @@ ANTHROPIC_API_KEY=sk-ant-... # or
 ./scripts/dev.sh
 ```
 
-| App | URL |
-|-----|-----|
-| Landing page | http://localhost:3003 |
-| Dashboard | http://localhost:3001 |
-| Proxy API | http://localhost:3000 |
+| Service | Local URL | Description |
+| :--- | :--- | :--- |
+| **Landing Page** | `http://localhost:3003` | Brutalist product landing page |
+| **Dashboard** | `http://localhost:3001` | Real-time cost & savings analytics |
+| **Proxy API** | `http://localhost:3000` | OpenAI & Anthropic compatible gateway |
 
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
 
-## Deploy Landing to Vercel
+## 📦 DEPLOYMENT
 
-To deploy only the landing page to Vercel:
+### Docker Compose (Full Stack)
 
-1. Import the repository in Vercel.
+To run all services (PostgreSQL, Redis, LiteLLM, Proxy, Dashboard, Evaluation, Landing) in containers:
+
+```bash
+cp .env.example .env
+# Edit .env with your API keys
+docker compose up --build
+```
+
+### Deploy Landing Page to Vercel
+
+The landing page is pre-configured for instant Vercel deployment:
+
+1. Import your repository in **[Vercel](https://vercel.com)**.
 2. Set **Root Directory** to `apps/landing`.
-3. Vercel will automatically detect Next.js and deploy the landing page.
+3. Deploy!
 
-Or use Vercel CLI:
+Or deploy via Vercel CLI:
 ```bash
 cd apps/landing
 vercel
 ```
 
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
 
-## Run tests
-
-```bash
-bun test apps/proxy/tests
-```
-
----
-
-## End-to-end test
-
-```bash
-curl -X POST http://localhost:3000/v1/chat/completions \
-  -H "Authorization: Bearer sk-r1-<your-key>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "route": "support-ticket-classify",
-    "messages": [{"role": "user", "content": "Server is down! URGENT!"}],
-    "max_tokens": 100
-  }'
-```
-
----
-
-## Full Docker Compose (all services)
-
-If you want to run everything in containers:
-
-```bash
-cp .env.example .env
-# fill in your API keys in .env
-docker compose up --build
-```
-
----
-
-## Project structure
+## 📂 PROJECT STRUCTURE
 
 ```
 routerone/
 ├── apps/
-│   ├── proxy/        # Hono + Bun — the main gateway (port 3000)
-│   ├── dashboard/    # Next.js — cost/savings analytics (port 3001)
-│   ├── evaluation/   # Python FastAPI — LLM-as-judge (port 3002)
-│   └── landing/      # Next.js — marketing page (port 3003)
+│   ├── proxy/        # Hono + Bun gateway (port 3000)
+│   ├── dashboard/    # Next.js cost & metrics UI (port 3001)
+│   ├── evaluation/   # Python FastAPI LLM-as-judge service (port 3002)
+│   └── landing/      # Next.js brutalist landing page (port 3003)
 ├── packages/
-│   └── shared/       # Drizzle schema, types, DB client
+│   └── shared/       # Drizzle database schemas, types, DB client
 ├── scripts/
-│   ├── setup.ps1     # Windows first-time setup
-│   ├── setup.sh      # Linux/macOS first-time setup
+│   ├── setup.ps1     # Windows automated setup
+│   ├── setup.sh      # Linux/macOS automated setup
 │   ├── dev.ps1       # Windows dev launcher
 │   └── dev.sh        # Linux/macOS dev launcher
-└── docker-compose.yml
+├── docker-compose.yml
+└── vercel.json
 ```
 
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
 
-## License
+## 📄 LICENSE
 
-MIT
+This project is open-source and licensed under the [MIT License](LICENSE).
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=100&section=footer&text=ROUTERONE%20%7C%20GITHUB.COM/INSPIDERS/ROUTERONE&fontSize=18&fontColor=FFFFFF&fontAlignY=60" width="100%"/>
