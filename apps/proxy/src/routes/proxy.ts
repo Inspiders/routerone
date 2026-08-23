@@ -47,7 +47,7 @@ async function handleRequest(c: any, format: "openai" | "anthropic") {
 
   // === CACHE SEMÂNTICO ===
   const cacheThreshold = route.qualityThreshold;
-  const cacheCheck = await checkSemanticCache(unified, route.name, cacheThreshold);
+  const cacheCheck = await checkSemanticCache(unified, route.name, cacheThreshold, apiKeyId);
   if (cacheCheck.hit) {
     await incrementCacheHit(route.name);
     const cached = cacheCheck.entry;
@@ -136,7 +136,7 @@ async function handleRequest(c: any, format: "openai" | "anthropic") {
                 decision = next;
               }
             }
-            await storeSemanticCache(unified, route.name, fullContent, decision.model, decision.provider, cost, 3600);
+            await storeSemanticCache(unified, route.name, fullContent, decision.model, decision.provider, cost, 3600, apiKeyId);
             await logRequest({
               apiKeyId, routeId: route.id, provider: decision.provider, model: decision.model,
               inputTokens: inputTokens || 1, outputTokens: outputTokens || 1,
@@ -167,7 +167,7 @@ async function handleRequest(c: any, format: "openai" | "anthropic") {
         }
       }
 
-      await storeSemanticCache(unified, route.name, content, decision.model, decision.provider, cost, 3600);
+      await storeSemanticCache(unified, route.name, content, decision.model, decision.provider, cost, 3600, apiKeyId);
       await logRequest({
         apiKeyId, routeId: route.id, provider: decision.provider, model: decision.model,
         inputTokens: usage.prompt_tokens, outputTokens: usage.completion_tokens,

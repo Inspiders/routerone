@@ -14,10 +14,11 @@ interface CacheEntry {
   createdAt: number;
 }
 
-function getCacheKey(route: string, embedding: number[]): string {
+function getCacheKey(route: string, embedding: number[], apiKeyId?: number | null): string {
   // Quantização simples: 3 casas decimais para reduzir variação
   const quantized = embedding.map(v => Math.round(v * 1000) / 1000);
-  return `semantic:${route}:${quantized.slice(0, 10).join(",")}`;
+  const tenant = apiKeyId ? `tenant:${apiKeyId}` : "tenant:global";
+  return `semantic:${tenant}:${route}:${quantized.slice(0, 10).join(",")}`;
 }
 
 async function getEmbedding(text: string): Promise<number[]> {
@@ -44,21 +45,23 @@ function cosineSimilarity(a: number[], b: number[]): number {
 export async function checkSemanticCache(
   req: UnifiedRequest,
   route: string,
-  threshold: number
+  threshold: number,
+  apiKeyId?: number | null
 ): Promise<{ hit: false } | { hit: true; entry: CacheEntry; similarity: number }> {
   const text = req.messages.map(m => m.content).join(" ").slice(0, 4000);
   const embedding = await getEmbedding(text);
-  const key = getCacheKey(route, embedding);
+  const key = getCacheKey(route, embedding, apiKeyId);
 
-  // Procurar entradas existentes para esta rota
-  const keys = await redis.keys(`semantic:${route}:*`);
+  // Procurar entradas existentes para este tenant e rota
+  const tenant = apiKeyId ? `tenant:${apiKeyId}` : "tenant:global";
+  const keys = await redis.keys(`semantic:${tenant}:${route}:*`);
   let best: { entry: CacheEntry; similarity: number } | null = null;
 
   for (const k of keys) {
     const raw = await redis.get(k);
     if (!raw) continue;
     const entry: CacheEntry = JSON.parse(raw);
-    const cachedEmbedding = k.split(":").slice(2).join(":").split(",").map(Number);
+    const cachedEmbedding = k.split(":").slice(3).join(":").split(",").map(Number);
     if (cachedEmbedding.length !== embedding.length) continue;
     const sim = cosineSimilarity(embedding, cachedEmbedding);
     if (sim >= threshold && (!best || sim > best.similarity)) {
@@ -67,10 +70,14 @@ export async function checkSemanticCache(
   }
 
   if (best) {
-    return { hit: true, entry: best.entry, similarity: best.similarity };
+    return { hit: true, entry: best.entry, similarity: simBest(best) };
   }
 
   return { hit: false };
+}
+
+function simBest(best: { similarity: number }) {
+  return best.similarity;
 }
 
 export async function storeSemanticCache(
@@ -80,11 +87,12 @@ export async function storeSemanticCache(
   model: string,
   provider: string,
   cost: number,
-  ttlSeconds: number = 3600
+  ttlSeconds: number = 3600,
+  apiKeyId?: number | null
 ): Promise<void> {
   const text = req.messages.map(m => m.content).join(" ").slice(0, 4000);
   const embedding = await getEmbedding(text);
-  const key = getCacheKey(route, embedding);
+  const key = getCacheKey(route, embedding, apiKeyId);
   const entry: CacheEntry = { response, model, provider, cost, createdAt: Date.now() };
   await redis.setex(key, ttlSeconds, JSON.stringify(entry));
 }
