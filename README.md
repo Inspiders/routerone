@@ -22,11 +22,13 @@
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
-
 <br/>
 
-## 🚀 OVERVIEW
+<!-- BOX 1: OVERVIEW -->
+<table width="100%">
+<tr>
+<td>
+<h2 align="center">🚀 OVERVIEW</h2>
 
 **Routerone** is an open-source, self-hosted LLM gateway that automatically routes each incoming request to the cheapest model capable of answering with optimal quality. 
 
@@ -43,10 +45,17 @@ Drop it into your application by simply changing the `base_url` — **zero code 
 ```
 [ Your Application ]  →  [ Routerone Proxy ]  →  [ LiteLLM Gateway ]  →  [ OpenAI / Anthropic / Groq / DeepSeek ]
 ```
+</td>
+</tr>
+</table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+<br/>
 
-## 💡 KEY FEATURES
+<!-- BOX 2: KEY FEATURES -->
+<table width="100%">
+<tr>
+<td>
+<h2 align="center">💡 KEY FEATURES</h2>
 
 ```
 > ⚡ Difficulty Classifier   : Analyzes prompt complexity (length, code, reasoning, math) to pick the right tier
@@ -56,13 +65,18 @@ Drop it into your application by simply changing the `base_url` — **zero code 
 > 🎯 Evaluation Engine     : Built-in Python/FastAPI LLM-as-judge benchmark against golden datasets
 > 🔐 Multi-tenant Isolation  : Isolated semantic cache keys per account/API key namespace
 ```
+</td>
+</tr>
+</table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+<br/>
 
-## 🛠️ TECH STACK
-
+<!-- BOX 3: TECH STACK -->
 <table width="100%">
-<tr><td valign="top" width="22%"><b>PROXY & CORE</b></td><td valign="top">
+<tr>
+<td colspan="2"><h2 align="center">🛠️ TECH STACK</h2></td>
+</tr>
+<tr><td valign="top" width="25%"><b>PROXY & CORE</b></td><td valign="top">
 <img src="https://img.shields.io/badge/HONO-000000?style=flat-square&logo=hono&logoColor=white"/>
 <img src="https://img.shields.io/badge/BUN-000000?style=flat-square&logo=bun&logoColor=white"/>
 <img src="https://img.shields.io/badge/TYPESCRIPT-000000?style=flat-square&logo=typescript&logoColor=white"/>
@@ -88,9 +102,13 @@ Drop it into your application by simply changing the `base_url` — **zero code 
 </td></tr>
 </table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+<br/>
 
-## 🏁 QUICK START
+<!-- BOX 4: QUICK START -->
+<table width="100%">
+<tr>
+<td>
+<h2 align="center">🏁 QUICK START</h2>
 
 ### Prerequisites
 
@@ -141,10 +159,17 @@ ANTHROPIC_API_KEY=sk-ant-...
 | **Landing Page** | `http://localhost:3003` | Brutalist product landing page |
 | **Dashboard** | `http://localhost:3001` | Real-time cost & savings analytics |
 | **Proxy API** | `http://localhost:3000` | OpenAI & Anthropic compatible gateway |
+</td>
+</tr>
+</table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+<br/>
 
-## 📦 DEPLOYMENT
+<!-- BOX 5: DEPLOYMENT -->
+<table width="100%">
+<tr>
+<td>
+<h2 align="center">📦 DEPLOYMENT</h2>
 
 ### Docker Compose (Full Stack)
 
@@ -169,10 +194,17 @@ Or deploy via Vercel CLI:
 cd apps/landing
 vercel
 ```
+</td>
+</tr>
+</table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
+<br/>
 
-## 📂 PROJECT STRUCTURE
+<!-- BOX 6: PROJECT STRUCTURE -->
+<table width="100%">
+<tr>
+<td>
+<h2 align="center">📂 PROJECT STRUCTURE</h2>
 
 ```
 routerone/
@@ -191,13 +223,14 @@ routerone/
 ├── docker-compose.yml
 └── vercel.json
 ```
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=4&section=header" width="100%"/>
-
-## 📄 LICENSE
-
-This project is open-source and licensed under the [MIT License](LICENSE).
+</td>
+</tr>
+</table>
 
 <br/>
 
+<div align="center">
+
 <img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=100&section=footer&text=ROUTERONE%20%7C%20GITHUB.COM/INSPIDERS/ROUTERONE&fontSize=18&fontColor=FFFFFF&fontAlignY=60" width="100%"/>
+
+</div>
