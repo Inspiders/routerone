@@ -105,20 +105,18 @@ Drop it into your application by simply changing the `base_url` — **zero code 
 <br/>
 
 <!-- BOX: DASHBOARD & BENCHMARKS -->
-<table width="100%">
-<tr>
-<td>
 <h2 align="center">📊 DASHBOARD & BENCHMARKS</h2>
 
 <p align="center">
   <a href="https://ibb.co/wZJxnPKL"><img src="https://i.ibb.co/wZJxnPKL/Bench1.png" alt="Routerone Dashboard Top" width="100%" /></a>
+</p>
+<p align="center">
   <a href="https://ibb.co/Q7SSpPFq"><img src="https://i.ibb.co/Q7SSpPFq/Bench2.png" alt="Routerone Dashboard Bottom" width="100%" /></a>
 </p>
 
-*Real-time performance analytics, cost optimization benchmarks, and model latency metrics captured live from the Routerone Dashboard.*
-</td>
-</tr>
-</table>
+<p align="center">
+  <i>Real-time performance analytics, cost optimization benchmarks, and model latency metrics captured live from the Routerone Dashboard.</i>
+</p>
 
 <br/>
 
