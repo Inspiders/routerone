@@ -108,10 +108,10 @@ Drop it into your application by simply changing the `base_url` — **zero code 
 <h2 align="center">📊 DASHBOARD & BENCHMARKS</h2>
 
 <p align="center">
-  <a href="https://ibb.co/wZJxnPKL"><img src="https://i.ibb.co/wZJxnPKL/Bench1.png" alt="Routerone Dashboard Top" width="100%" /></a>
+  <a href="https://ibb.co/wZJxnPKL"><img src="https://i.ibb.co/wZJxnPKL/Bench1.png" alt="Routerone Dashboard Top" /></a>
 </p>
 <p align="center">
-  <a href="https://ibb.co/Q7SSpPFq"><img src="https://i.ibb.co/Q7SSpPFq/Bench2.png" alt="Routerone Dashboard Bottom" width="100%" /></a>
+  <a href="https://ibb.co/Q7SSpPFq"><img src="https://i.ibb.co/Q7SSpPFq/Bench2.png" alt="Routerone Dashboard Bottom" /></a>
 </p>
 
 <p align="center">
