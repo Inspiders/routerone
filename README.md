@@ -111,11 +111,8 @@ Drop it into your application by simply changing the `base_url` — **zero code 
 <h2 align="center">📊 DASHBOARD & BENCHMARKS</h2>
 
 <p align="center">
-  <a href="https://ibb.co/Q7SSpPFq"><img src="https://i.ibb.co/Q7SSpPFq/Bench2.png" alt="Dashboard Benchmark Overview" /></a>
-</p>
-<br/>
-<p align="center">
-  <a href="https://ibb.co/wZJxnPKL"><img src="https://i.ibb.co/wZJxnPKL/Bench1.png" alt="Dashboard Latency & Cost Analytics" /></a>
+  <a href="https://ibb.co/wZJxnPKL"><img src="https://i.ibb.co/wZJxnPKL/Bench1.png" alt="Routerone Dashboard Top" width="100%" /></a>
+  <a href="https://ibb.co/Q7SSpPFq"><img src="https://i.ibb.co/Q7SSpPFq/Bench2.png" alt="Routerone Dashboard Bottom" width="100%" /></a>
 </p>
 
 *Real-time performance analytics, cost optimization benchmarks, and model latency metrics captured live from the Routerone Dashboard.*
