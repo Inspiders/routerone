@@ -18,12 +18,12 @@ export default function Hero() {
           </h1>
           <p className="text-lg lg:text-xl font-medium mb-8 max-w-lg leading-relaxed">
             Change the <code className="font-mono bg-black text-white px-1">base_url</code> in your SDK. 
-            RouterOne automatically picks the cheapest model capable of answering 
+            Routerone automatically picks the cheapest model capable of answering 
             with sufficient quality. Zero code changes in your app.
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://github.com/routerone/routerone"
+              href="https://github.com/Inspiders/routerone"
               className="inline-block border-2 border-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
             >
               VIEW ON GITHUB

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="p-8 lg:p-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-b-2 border-white/20 pb-12">
           <div>
-            <div className="text-2xl font-black uppercase tracking-tighter mb-4">RouterOne</div>
+            <div className="text-2xl font-black uppercase tracking-tighter mb-4">Routerone</div>
             <p className="text-sm font-mono opacity-60 leading-relaxed">
               Open-source proxy to reduce LLM costs 
               without changing application code.
@@ -24,7 +24,7 @@ export default function Footer() {
           <div>
             <div className="text-xs font-bold uppercase tracking-widest opacity-50 mb-4">Community</div>
             <ul className="space-y-2 text-sm font-mono">
-              <li><a href="https://github.com/routerone/routerone" className="hover:underline">GitHub</a></li>
+              <li><a href="https://github.com/Inspiders/routerone" className="hover:underline">GitHub</a></li>
               <li><a href="#" className="hover:underline">Issues</a></li>
               <li><a href="#" className="hover:underline">Discussions</a></li>
             </ul>
@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
           <div className="flex gap-4">
             <a
-              href="https://github.com/routerone/routerone"
+              href="https://github.com/Inspiders/routerone"
               className="inline-block border-2 border-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
             >
               VIEW ON GITHUB

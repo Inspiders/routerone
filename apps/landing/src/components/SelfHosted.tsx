@@ -8,7 +8,7 @@ export default function SelfHosted() {
           SELF-HOSTED, ALWAYS
         </h2>
         <p className="text-lg font-medium mb-12 max-w-2xl">
-          RouterOne runs on your infrastructure. Your data. Your keys. 
+          Routerone runs on your infrastructure. Your data. Your keys. 
           Zero managed SaaS by third parties. Zero lock-in.
         </p>
 
@@ -17,7 +17,7 @@ export default function SelfHosted() {
           <div className="border-b-2 lg:border-b-0 lg:border-r-2 border-black p-8">
             <h3 className="text-2xl font-black uppercase mb-6">DOCKER COMPOSE</h3>
             <div className="border-2 border-black p-4 bg-black text-white font-mono text-sm overflow-x-auto">
-              <pre>{`git clone https://github.com/routerone/routerone.git
+              <pre>{`git clone https://github.com/Inspiders/routerone.git
 cd routerone
 cp .env.example .env
 # Edit .env with your API keys

@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "RouterOne — Cut Your LLM API Costs in Seconds",
+  title: "Routerone — Cut Your LLM API Costs in Seconds",
   description:
     "Open-source, self-hosted LLM proxy that automatically routes each request to the cheapest model capable of answering with quality. Change only the base_url. Zero code changes in your app.",
   keywords: [
@@ -16,19 +16,19 @@ export const metadata: Metadata = {
     "Anthropic proxy",
     "Groq",
   ],
-  authors: [{ name: "RouterOne" }],
+  authors: [{ name: "Routerone" }],
   openGraph: {
-    title: "RouterOne — Cut Your LLM API Costs in Seconds",
+    title: "Routerone — Cut Your LLM API Costs in Seconds",
     description:
       "Self-hosted LLM proxy that picks the cheapest model capable of answering with quality. Change only the base_url.",
     url: "https://routerone.dev",
-    siteName: "RouterOne",
+    siteName: "Routerone",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RouterOne — Cut Your LLM API Costs in Seconds",
+    title: "Routerone — Cut Your LLM API Costs in Seconds",
     description:
       "Self-hosted LLM proxy. Change the base_url, save 60–85% on LLM API costs automatically.",
   },

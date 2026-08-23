@@ -1,4 +1,6 @@
-# RouterOne
+# Routerone
+
+![Routerone Banner](https://i.ibb.co/5X8bbQPN/Gemini-Generated-Image-3ko1vx3ko1vx3ko1.jpg)
 
 > Open-source, self-hosted LLM proxy that automatically routes each request
 > to the cheapest model capable of answering with sufficient quality.
@@ -16,10 +18,10 @@
 
 ## What it does
 
-RouterOne sits between your app and the LLM providers:
+Routerone sits between your app and the LLM providers:
 
 ```
-Your App  →  RouterOne Proxy  →  LiteLLM  →  OpenAI / Anthropic / Groq / DeepSeek
+Your App  →  Routerone Proxy  →  LiteLLM  →  OpenAI / Anthropic / Groq / DeepSeek
 ```
 
 For every request it:
@@ -42,7 +44,7 @@ For every request it:
 | Multi-provider | LiteLLM |
 | Database | PostgreSQL + Drizzle ORM |
 | Cache | Redis (semantic similarity) |
-| Deploy | Docker Compose |
+| Deploy | Docker Compose / Vercel (Landing) |
 
 ---
 
@@ -58,14 +60,14 @@ For every request it:
 
 **Windows:**
 ```powershell
-git clone https://github.com/routerone/routerone
+git clone https://github.com/Inspiders/routerone.git
 cd routerone
 .\scripts\setup.ps1
 ```
 
 **Linux / macOS:**
 ```bash
-git clone https://github.com/routerone/routerone
+git clone https://github.com/Inspiders/routerone.git
 cd routerone
 chmod +x scripts/setup.sh scripts/dev.sh
 ./scripts/setup.sh
@@ -105,6 +107,22 @@ ANTHROPIC_API_KEY=sk-ant-... # or
 | Landing page | http://localhost:3003 |
 | Dashboard | http://localhost:3001 |
 | Proxy API | http://localhost:3000 |
+
+---
+
+## Deploy Landing to Vercel
+
+To deploy only the landing page to Vercel:
+
+1. Import the repository in Vercel.
+2. Set **Root Directory** to `apps/landing`.
+3. Vercel will automatically detect Next.js and deploy the landing page.
+
+Or use Vercel CLI:
+```bash
+cd apps/landing
+vercel
+```
 
 ---
 
